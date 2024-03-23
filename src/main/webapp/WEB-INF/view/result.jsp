@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ page import="java.util.List" %>
+	<%@ page import="model.Question" %>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,15 +11,21 @@
 </head>
 <body>
 	<h1>クイズ結果</h1>
-	<%-- ここでクイズの結果を表示 --%>
-	<p>お疲れさまでした！クイズの結果は・・・</p>
-	<%-- 例えば、セッションからスコアや正解数を取得して表示 --%>
-	<% HttpSession session = request.getSession();
-        Integer score = (Integer) session.getAttribute("score");
-        if (score == null) { score = 0; }
-        out.println("<p>正解数: " + score + "</p>");
-    %>
-	<a href="QuizServlet">クイズを再開始する</a>
+	<%
+	// スコアの取得と初期化
+	Integer score = (Integer) request.getSession().getAttribute("score");
+	if (score == null) {
+		score = 0;
+	}
+	// 質問リストの取得
+	List<Question> questions = (List<Question>) request.getSession().getAttribute("questions");
+	int totalQuestions = questions != null ? questions.size() : 0; // nullチェック
+	%>
+	<%--<Question>型にキャストでsize()呼び出しがエラー（ー） --%>
+	
+	<p>お疲れさまでした！</p>
+	<p>あなたのスコアは<%= score %> / <%= totalQuestions %>です！</p>
+	
+	<a href="QuizServlet?reset=true">クイズを再開始する</a>
 </body>
 </html>
-
