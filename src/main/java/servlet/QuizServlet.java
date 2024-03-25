@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.GenreDAO;
 import dao.QuestionDAO;
+import model.Genre;
 import model.Question;
 
 /**
@@ -36,23 +38,36 @@ public class QuizServlet extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String reset = request.getParameter("reset");
+		String genreIdString = request.getParameter("genreId");//ジャンルID
 
-		if ("true".equals(reset)) {
-			session.invalidate();//セッションを無効化
-			session = request.getSession(true);//新しいセッション
-			//ここでクイズの問題リストを再取得、新しいセッションにセット
-			List<Question> questions = QuestionDAO.getAllQuestion();
-			session.setAttribute("questions", questions);
-			session.setAttribute("index", 0);
-			session.setAttribute("score", 0);//スコアリセット
-		} else {//初期状態
-			if (session.getAttribute("questions") == null) {
-				List<Question> questions = QuestionDAO.getAllQuestion();
-				session.setAttribute("questions", questions);
-				session.setAttribute("index", 0);
-				session.setAttribute("score", 0);
+		//リセットパラメータがtrue、または最初のアクセス時(ジャンルIDが指定されていない場合)
+		if ("true".equals(reset) || genreIdString == null) {
+			if ("true".equals(reset)) {
+				session.invalidate();//セッションを無効化
+				session = request.getSession(true);//新しいセッション
 			}
+			//ジャンルリストをDBから取得してリクエストスコープにセット
+			List<Genre>genres = GenreDAO.getAllGenre();
+			request.setAttribute("genres",genres);
+			
+			//ジャンル選択画面にフォワード
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/select_genre.jsp");
+			rd.forward(request, response);
+			return;//メソッド処理終了
 		}
+
+			//ジャンル選択に基づく問題をフィルタリング
+			try {
+				int genreId = Integer.parseInt(genreIdString);
+				List<Question> questionsByGenre = QuestionDAO.getQuestionsByGenre(genreId);
+				session.setAttribute("questions", questionsByGenre);
+				session.setAttribute("index", 0);//インデックスリセット
+				session.setAttribute("score", 0);//スコアリセット
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+				return;
+			}
+			
 		Integer index = (Integer) session.getAttribute("index");
 		List<Question> questions = (List<Question>) session.getAttribute("questions");
 		//次の問題へ
@@ -65,6 +80,7 @@ public class QuizServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/result.jsp");
 			rd.forward(request, response);
 		}
+
 	}
 
 	/**

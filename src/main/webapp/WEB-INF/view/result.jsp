@@ -10,7 +10,7 @@
 <title>クイズ結果</title>
 </head>
 <body>
-	<h1>クイズ結果</h1>
+	<h1>結果</h1>
 	<%
 	// スコアの取得と初期化
 	Integer score = (Integer) request.getSession().getAttribute("score");
