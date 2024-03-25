@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.QuestionDAO;
 import model.Question;
 
 /**
@@ -35,15 +36,37 @@ public class QuizServlet extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String reset = request.getParameter("reset");
-		
+
 		if ("true".equals(reset)) {
 			session.invalidate();//セッションを無効化
 			session = request.getSession(true);//新しいセッション
 			//ここでクイズの問題リストを再取得、新しいセッションにセット
-			
-			
+			List<Question> questions = QuestionDAO.getAllQuestion();
+			session.setAttribute("questions", questions);
+			session.setAttribute("index", 0);
+			session.setAttribute("score", 0);//スコアリセット
+		} else {//初期状態
+			if (session.getAttribute("questions") == null) {
+				List<Question> questions = QuestionDAO.getAllQuestion();
+				session.setAttribute("questions", questions);
+				session.setAttribute("index", 0);
+				session.setAttribute("score", 0);
+			}
+		}
+		Integer index = (Integer) session.getAttribute("index");
+		List<Question> questions = (List<Question>) session.getAttribute("questions");
+		//次の問題へ
+		if (index < questions.size()) {
+			Question question = questions.get(index);
+			request.setAttribute("question", question);
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/quiz.jsp");
+			rd.forward(request, response);
+		} else {//全問終了後、結果へ
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/result.jsp");
+			rd.forward(request, response);
 		}
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
