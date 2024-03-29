@@ -7,17 +7,20 @@ public class Question {
 	private String option2;
 	private String option3;
 	private String answer;
+	private String hint; 
+
 
 	public Question() {
 	}
 
-	public Question(int id, String question, String option1, String option2, String option3, String answer) {
+	public Question(int id, String question, String option1, String option2, String option3, String answer,String hint) {
 		this.id = id;
 		this.question = question;
 		this.option1 = option1;
 		this.option2 = option2;
 		this.option3 = option3;
 		this.answer = answer;
+		this.hint = hint;
 	}
 
 	public int getId() {
@@ -67,5 +70,12 @@ public class Question {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
+    public String getHint() {
+        return hint;
+    }
+
+    public void setHint(String hint) {
+        this.hint = hint;
+    }
 
 }

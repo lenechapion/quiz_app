@@ -11,7 +11,8 @@ public class DBUtil {
     private static final String PASSWORD = "";
 
     public static Connection getConnection() {
-        Connection con = null; 
+       //接続失敗はnull
+    	Connection con = null; 
         try {
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, USER, PASSWORD);

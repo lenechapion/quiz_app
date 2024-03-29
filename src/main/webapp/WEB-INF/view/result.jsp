@@ -17,15 +17,15 @@
 	if (score == null) {
 		score = 0;
 	}
-	// 質問リストの取得
+	// 問題の取得
 	List<Question> questions = (List<Question>) request.getSession().getAttribute("questions");
 	int totalQuestions = questions != null ? questions.size() : 0; // nullチェック
 	%>
 	<%--<Question>型にキャストでsize()呼び出しがエラー（ー） --%>
 	
 	<p>お疲れさまでした！</p>
-	<p>あなたのスコアは<%= score %> / <%= totalQuestions %>です！</p>
+	<p>結果は <%= totalQuestions %>問中<%= score %>問、正解でした！</p>
+	<a href="QuizServlet">クイズを再開始する</a>
 	
-	<a href="QuizServlet?reset=true">クイズを再開始する</a>
 </body>
 </html>

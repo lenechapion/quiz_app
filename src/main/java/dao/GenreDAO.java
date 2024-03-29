@@ -11,15 +11,17 @@ import model.Genre;
 
 public class GenreDAO {
 
-	//全ジャンルを取得
+	//DBから全ジャンルを取得
 	public static List<Genre> getAllGenre() {
 		List<Genre> genres = new ArrayList<>();
+		//ジャンル情報を取得
 		String sql = "SELECT * FROM genres";
 
 		try (Connection con = DBUtil.getConnection();
 				PreparedStatement stmt = con.prepareStatement(sql)) {
 			ResultSet rs = stmt.executeQuery();
 
+			// ジャンルオブジェクト生成、リストに追加
 			while (rs.next()) {
 				Genre genre = new Genre();
 				genre.setId(rs.getInt("id"));

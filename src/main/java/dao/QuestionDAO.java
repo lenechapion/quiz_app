@@ -38,7 +38,7 @@ public class QuestionDAO {
 	public static List<Question> getQuestionsByGenre(int genreId) {
 		List<Question> questions = new ArrayList<>();
 		try (Connection con = DBUtil.getConnection()) {
-			PreparedStatement stmt = con.prepareStatement("SELECT * FROM questions WHERE genre_id = ?");
+			PreparedStatement stmt = con.prepareStatement("SELECT * FROM questions WHERE genres_id = ?");
 			stmt.setInt(1, genreId);
 			ResultSet rs = stmt.executeQuery();
 
