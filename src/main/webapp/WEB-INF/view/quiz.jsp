@@ -39,6 +39,9 @@
 		<input type="radio" name="answer" value="<%=question.getOption2()%>"><%=question.getOption2()%><br>
 		<input type="radio" name="answer" value="<%=question.getOption3()%>"><%=question.getOption3()%><br>
 		<input type="submit" value="回答"><br>
+		<p><a href="#" onclick="alert('<%=question.getHint() %>'); return false;">ヒントを見る</a><br>
+		<p></p>
+		<a href="QuizServlet">ジャンル選択に戻る</a>
 	</form>
 	<%
 	} else {

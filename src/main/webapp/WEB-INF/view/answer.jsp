@@ -8,7 +8,7 @@
 <title>回答結果</title>
 </head>
 <body>
-    <h1>答え</h1>
+    
     <%
     Boolean isCorrect = (Boolean) session.getAttribute("isCorrect");
     String selectedAnswer = (String) session.getAttribute("selectedAnswer");
@@ -17,12 +17,12 @@
     Integer index = (Integer) session.getAttribute("index");
     %>
 
-    <% if (Boolean.TRUE.equals(isCorrect)) { %>
+    <h1><% if (Boolean.TRUE.equals(isCorrect)) { %>
         <p>正解です！</p>
     <% } else { %>
         <p>残念…不正解です！</p>
     <% } %>
-
+	</h1>
     <p>あなたの選択: <%= selectedAnswer %></p>
     <p>正解: <%= currentQuestion.getAnswer() %></p>
     <p>問題文: <%= currentQuestion.getQuestion() %></p>
