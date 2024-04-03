@@ -33,8 +33,7 @@
 	%>
 	<form action="QuizServlet" method="post"
 		onsubmit="return validateForm();">
-		<p>
-			問題：<%=question.getQuestion()%></p>
+		<p>問題：<%=question.getQuestion()%></p><br>
 		<input type="radio" name="answer" value="<%=question.getOption1()%>"><%=question.getOption1()%><br>
 		<input type="radio" name="answer" value="<%=question.getOption2()%>"><%=question.getOption2()%><br>
 		<input type="radio" name="answer" value="<%=question.getOption3()%>"><%=question.getOption3()%><br>

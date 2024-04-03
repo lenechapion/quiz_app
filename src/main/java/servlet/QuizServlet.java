@@ -42,7 +42,7 @@ public class QuizServlet extends HttpServlet {
 		List<Question> questions = (List<Question>) session.getAttribute("questions");
 		Integer index = (Integer) session.getAttribute("index");
 
-		//次へを押した処理（仮修正版）
+		//次へを押した処理
 		if ("true".equals(reset) && questions != null && index != null) {
 			if (index < questions.size() - 1) {
 				//次の問題がある場合、インデックスを更新して問題を表示
@@ -75,7 +75,6 @@ public class QuizServlet extends HttpServlet {
 			try {
 				int genreId = Integer.parseInt(genreIdString);
 				List<Question> questionsByGenre = QuestionDAO.getQuestionsByGenre(genreId);
-
 				session.setAttribute("questions", questionsByGenre);
 				session.setAttribute("index", 0);//インデックスリセット
 				session.setAttribute("score", 0);//スコアリセット
@@ -141,7 +140,10 @@ public class QuizServlet extends HttpServlet {
 		String nextAction = request.getParameter("nextAction");
 		Question currentQuestion = questions.get(index); //current(現在)
 		String selectedAnswer = request.getParameter("answer");
-
+		
+		
+		
+		//次の問題に移るか、クイズを終了するか
 		if ("nextQuestion".equals(nextAction) || "showResult".equals(nextAction)) {
 			if (index < questions.size() - 1) {
 				session.setAttribute("index", ++index);
@@ -156,11 +158,25 @@ public class QuizServlet extends HttpServlet {
 			}
 			return;
 		}
-
+		//回答が正しいかどうか
 		boolean isCorrect = selectedAnswer != null && selectedAnswer.equals(currentQuestion.getAnswer());
 		session.setAttribute("isCorrect", isCorrect);
+		
+		//正解の場合のみスコアをインクリメント
+		if(isCorrect) {
+			Integer score = (Integer) session.getAttribute("score");
+			if(score == null) {
+				score = 0;//スコアが未設定の場合は０で初期化
+			}
+			score++;
+			session.setAttribute("score", score);//更新されたスコアをセッションに保存
+		}
+		
+		//回答と現在の問題をセッションに保存
 		session.setAttribute("selectedAnswer", selectedAnswer);
 		session.setAttribute("currentQuestion", currentQuestion);
+		
+		//回答結果のページにフォワード
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/answer.jsp");
 		rd.forward(request, response);
 

@@ -26,6 +26,8 @@ public class QuestionDAO {
 					question.setOption2(rs.getString("option2"));
 					question.setOption3(rs.getString("option3"));
 					question.setAnswer(rs.getString("answer"));
+					question.setHint(rs.getString("hint"));
+					question.setCommentary(rs.getString("commentary"));
 					questions.add(question);
 				}
 			}
@@ -50,6 +52,8 @@ public class QuestionDAO {
 				question.setOption2(rs.getString("option2"));
 				question.setOption3(rs.getString("option3"));
 				question.setAnswer(rs.getString("answer"));
+				question.setHint(rs.getString("hint"));
+				question.setCommentary(rs.getString("commentary"));
 				questions.add(question);
 			}
 		} catch (Exception e) {

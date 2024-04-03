@@ -8,12 +8,13 @@ public class Question {
 	private String option3;
 	private String answer;
 	private String hint; 
+	private String commentary;
 
 
 	public Question() {
 	}
 
-	public Question(int id, String question, String option1, String option2, String option3, String answer,String hint) {
+	public Question(int id, String question, String option1, String option2, String option3, String answer,String hint,String commentary) {
 		this.id = id;
 		this.question = question;
 		this.option1 = option1;
@@ -21,6 +22,7 @@ public class Question {
 		this.option3 = option3;
 		this.answer = answer;
 		this.hint = hint;
+		this.commentary = commentary;
 	}
 
 	public int getId() {
@@ -77,5 +79,14 @@ public class Question {
     public void setHint(String hint) {
         this.hint = hint;
     }
+    
+	public String getCommentary() {
+		return commentary;
+	}
+
+	public void setCommentary(String commentary) {
+		this.commentary = commentary;
+	}
+
 
 }

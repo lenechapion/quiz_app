@@ -25,7 +25,9 @@
 	</h1>
     <p>あなたの選択: <%= selectedAnswer %></p>
     <p>正解: <%= currentQuestion.getAnswer() %></p>
-    <p>問題文: <%= currentQuestion.getQuestion() %></p>
+	<p>解説: <%= currentQuestion.getCommentary() %></p>
+    <p>問題: <%= currentQuestion.getQuestion() %></p>
+    
 
     <form action="QuizServlet" method="post">
         <% if (index < questions.size() - 1) { %>
