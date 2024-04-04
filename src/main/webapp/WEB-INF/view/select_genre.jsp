@@ -7,12 +7,12 @@
     <title>ジャンル選択</title>
 </head>
 <body>
-    <h1>クイズ</h1>
+    <h1>クイズ❔</h1>
     
-    <p>クイズのジャンルを選択してください。</p>
-    <p>ジャンルに沿った問題が１０問出題されます。</p>
-    <p>問題に対して、選択肢３つの中から"答えを１つ"選択して下さい。</p>
-    <p>ヒントを気持ちばかり用意しています…！</p><br>
+    <p>クイズのジャンルを選択してください</p>
+    <p>"開始ボタン"でジャンルに沿った問題が全１０問出題されます！</p>
+    <p>問題に対して、選択肢３つの中から"答えを１つ"選択して下さい。</p><br>
+    <p>"ヒントを見る"というモノがありますが、たぶんそんなものはありません( ◜◡◝ )</p><br>
     <h2>ジャンル選択</h2>
     <form action="QuizServlet" method="get">
         <select name="genreId">
@@ -20,7 +20,9 @@
                 <option value="${genre.id}">${genre.name}</option>
             </c:forEach>
         </select>
-        <input type="submit" value="開始">
+        <input type="submit" value="開始"><br>
+        
+        
     </form>
 </body>
 </html>
@@ -30,8 +32,6 @@
 c:forEach[ループ]
 var[] 
 --%>
-
-
 
 <%--
 参考：JSTL タグライブラリ
