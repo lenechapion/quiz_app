@@ -38,7 +38,7 @@ public class QuizServlet extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String reset = request.getParameter("reset");
-		String genreIdString = request.getParameter("genreId"); // リクエストからジャンルIDを取得
+		String genreIdString = request.getParameter("genreId"); // リクエストからジャンルID取得
 		List<Question> questions = (List<Question>) session.getAttribute("questions");
 		Integer index = (Integer) session.getAttribute("index");
 

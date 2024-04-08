@@ -25,6 +25,7 @@
 	
 	<p>お疲れさまでした！</p>
 	<p>結果は <%= totalQuestions %>問中<%= score %>問、正解でした！</p>
+	<p>他ジャンルも遊んでみてね！</p>
 	<a href="QuizServlet">ジャンル選択に戻る</a>
 	
 </body>
