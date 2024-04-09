@@ -6,15 +6,45 @@
 <head>
 <meta charset="UTF-8">
 <title>クイズ</title>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #EEFFFF;
+        text-align: center;
+        padding: 20px;
+    }
+    h1 {
+        color: #333;
+    }
+    p {
+        font-size: 18px;
+        color: #666;
+    }
+    a {
+        display: inline-block;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+    a:hover {
+        background-color: #45a049;
+    }
+</style>
 <script>
-	function validateForm() {
+	//選択肢の選択状況を検証
+	function validateForm() { 
+		//"answer"のラジオボタンを全て取得
 		var radios = document.getElementsByName("answer");
-		var formValid = false;
+		var formValid = false;//フォームの有効性
 
 		var i = 0;
+		//選択されたラジオボタンがあるかどうか判定
 		while (!formValid && i < radios.length) {
 			if (radios[i].checked)
-				formValid = true;
+				formValid = true;//見つかった場合true
 			i++;
 		}
 
@@ -37,6 +67,7 @@
 		<input type="radio" name="answer" value="<%=question.getOption1()%>"><%=question.getOption1()%><br>
 		<input type="radio" name="answer" value="<%=question.getOption2()%>"><%=question.getOption2()%><br>
 		<input type="radio" name="answer" value="<%=question.getOption3()%>"><%=question.getOption3()%><br>
+		<br>
 		<input type="submit" value="回答"><br>
 		<p><a href="#" onclick="alert('<%=question.getHint() %>'); return false;">ヒントを見る</a><br>
 		<p></p>

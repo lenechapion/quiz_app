@@ -6,6 +6,33 @@
 <head>
 <meta charset="UTF-8">
 <title>回答結果</title>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #EEFFFF;
+        text-align: center;
+        padding: 20px;
+    }
+    h1 {
+        color: #333;
+    }
+    p {
+        font-size: 18px;
+        color: #666;
+    }
+    a {
+        display: inline-block;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+    a:hover {
+        background-color: #45a049;
+    }
+</style>
 </head>
 <body>
     

@@ -5,14 +5,41 @@
 <head>
     <meta charset="UTF-8">
     <title>ジャンル選択</title>
+    <style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color:#EEFFFF;
+        text-align: center;
+        padding: 20px;
+    }
+    h1 {
+        color: #333;
+    }
+    p {
+        font-size: 18px;
+        color: #666;
+    }
+    a {
+        display: inline-block;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+    a:hover {
+        background-color: #45a049;
+    }
+</style>
 </head>
 <body>
-    <h1>クイズ❔</h1>
+    <h1>クイズ❔っぽいやつ</h1>
     
-    <p>クイズのジャンルを選択してください</p>
+    <p>クイズの出題ジャンルを選択してください</p>
     <p>"開始"ボタンでジャンルに沿った問題(固定)が全１０問出題されます！</p>
     <p>３つの選択肢から"答えを１つ"選択して下さい。</p><br>
-    <p>"ヒントを見る"というモノがありますが、基本ヒントらしさはありません( ◜◡◝ )</p>
+    <p>"ヒントを見る"というモノがありますが、基本ヒントの役割を果たしていません( ◜◡◝ )</p>
     <p>※高難度問題は全問ヒントあり※</p>
     <h2>ジャンル選択</h2>
     <form action="QuizServlet" method="get">
@@ -22,33 +49,27 @@
             </c:forEach>
         </select>
         <input type="submit" value="開始"><br>
+
         
-<p>　　　　　　　　 ,-､　　　　　　　　　　　　,.-､ </p>
-<p>　　　　　　　 ./:::::＼　　　　　　　　　 ／::::::ヽ </p>
-<p>　　　　　　　/::::::::::::;ゝ--──-- ､._/::::::::::::::| </p>
-<p>　　　　　　 /,.-‐''"´ 　　　　　　　　 ＼:::::::::::|</p> 
-<p>　　　　　／　 　　　　　　　　　　　　　　ヽ､::::| </p>
+<p>　　　　　　　,-､ 　　　　　　　　　,.-､</p>
+<p>　　　　　　./:::::＼　 　　　　　 ／::::::ヽ</p>
+<p>　　　　/::::::::::::;ゝ--───--､._/::::::::::::::| </p>
+<p>　　　　 /,.-‐''"´ 　　　　　　　　 ＼:::::::::::|</p> 
+<p>　　　　　／　 　　　　　　　　　　　　ヽ､::::| </p>
 <p>　　　　/　　　　●　　　 　 　 　 　 　 　 　 ヽ| </p>
 <p>　　 　 l　　　, , ,　　 　 　 　 　 　 ●　　　 　 l </p>
-<p>　　　 .|　　　 　　　　(_人__丿　　　　　､､､　　|　　　　</p>
+<p>　　　　　　　 .|　　　 　　　　(_人__丿　　　　　､､､　　|　　　　</p>
 <p>　 　 　l　　　　　　　　　　　　　　　　　　　 　 l </p>
 <p>　　　　` ､　　　　　　　　 　 　 　 　 　 　 　 / </p>
-<p>　　　　　　`ｰ ､__　　　 　 　 　　　　　　　／ </p>
+<p>　　　　　　`ｰ ､__　　　　　　　　　　　　／ </p>
 <p>　　　　　　　　　/`'''ｰ‐‐──‐‐‐┬'''""´</p>
         
         
-    </form>
+        
+</form>
 </body>
 </html>
-
-
 <%-- 
 c:forEach[ループ]
 var[] 
 --%>
-
-<%--
-参考：JSTL タグライブラリ
-https://workteria.forward-soft.co.jp/blog/detail/10069#anchor_4
-https://qiita.com/sculptcat/items/53d1a3a2d3b973354085
- --%>
